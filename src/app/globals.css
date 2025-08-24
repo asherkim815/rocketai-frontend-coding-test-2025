@@ -1,100 +1,238 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap');
+@import 'tailwindcss';
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --thick-border: 2px solid black;
+  --thin-border: 1px solid lightgrey;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
 body {
   text-align: center;
+  font-size: 18px;
+  font-family: 'Noto Serif KR', serif;
+  background-color: rgba(245, 245, 245, 1);
 }
 
+/* 유일하게 테일윈드 사용 */
 main {
-position: relative;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-p {
-  font-size: 19px;
-}
-
+/* 대사: 이제 본격적으로 OO님의 사주팔자를~ */
 .dialogue1 {
   position: absolute;
-  top: 31.6%;
-  left: 17%;
+  top: 31.65%;
+  left: 18%;
 }
 
+/* 대사: 제가 OO님의 사주를 보기 쉽게~ */
 .dialogue2 {
   position: absolute;
   top: 49.4%;
-  left: 14%;
+  left: 15%;
+}
+
+/* 사주팔자 섹션 */
+.saju {
+  position: absolute;
+  top: 66.6%;
+  width: 420px;
+  border: 4px solid black;
+  background-color: #f5f3ec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 사주팔자 섹션 위, 아래, 왼쪽, 오른쪽 장식용 선 */
+.deco {
+  position: absolute;
+}
+
+.deco-top {
+  border-bottom: 1px solid black;
+  height: 10px;
+  top: 0;
+  width: 100%;
+}
+
+.deco-bottom {
+  border-top: 1px solid black;
+  height: 10px;
+  bottom: 0;
+  width: 100%;
+}
+
+.deco-left {
+  border-right: 1px solid black;
+  width: 10px;
+  left: 0;
+  height: 100%;
+}
+
+.deco-right {
+  border-left: 1px solid black;
+  width: 10px;
+  right: 0;
+  height: 100%;
+}
+
+/* 사주팔자 섹션 제목: 김로켓님의 사주 */
+.saju-title {
+  font-size: 24px;
+  padding-top: 40px;
+}
+
+/* 사주팔자 섹션 시간 */
+.saju-time {
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* 사주팔자 표 */
+.saju-table {
+  padding-bottom: 40px;
+}
+
+.saju-row {
+  display: flex;
+}
+
+.saju-square {
+  padding: 5px;
+  min-height: 70px;
+  width: 70px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 사주팔자 표 각 칸, 마지막이 아닌 둘째 줄마다 padding-bottom 추가 */
+.even-line {
+  padding-bottom: 10px;
+}
+
+.saju-square img {
+  width: 100%;
+}
+
+/* 사주팔자 표 색상 및 선 작업 */
+.col0,
+.row0 {
+  background-color: #f5f3ec;
+}
+
+.col0,
+.col4 {
+  border-right: var(--thick-border);
+}
+
+.col1,
+.col2,
+.col3 {
+  border-right: var(--thin-border);
+}
+
+.row0,
+.row1,
+.row3,
+.row4,
+.row5,
+.row6,
+.row7 {
+  border-bottom: var(--thick-border);
+}
+
+.row2 {
+  border-bottom: var(--thin-border);
+}
+
+@media (max-width: 450px) {
+  body {
+    font-size: 17px;
+  }
+
+  .dialogue1 {
+    position: absolute;
+    top: 31.6%;
+    left: 18%;
+  }
+
+  .dialogue2 {
+    position: absolute;
+    top: 49.4%;
+    left: 15.5%;
+  }
+
+  .saju {
+    width: 380px;
+  }
+
+  .saju-square {
+    min-height: 60px;
+    width: 60px;
+  }
 }
 
 @media (max-width: 400px) {
-  p {
-  font-size: 17px;
-}
-.dialogue1 {
-  position: absolute;
-  top: 31.4%;
-  left: 15.6%;
-}
+  body {
+    font-size: 15px;
+  }
 
-.dialogue2 {
-  position: absolute;
-  top: 49.2%;
-  left: 12%;
-}
+  .dialogue1 {
+    position: absolute;
+    top: 31.7%;
+    left: 17.7%;
+  }
+
+  .dialogue2 {
+    position: absolute;
+    top: 49.4%;
+    left: 16%;
+  }
+
+  .saju {
+    width: 335px;
+  }
+
+  .saju-square {
+    min-height: 55px;
+    width: 55px;
+  }
 }
 
 @media (max-width: 350px) {
-  p {
-  font-size: 15px;
-}
-.dialogue1 {
-  position: absolute;
-  top: 31.5%;
-  left: 15.6%;
-}
+  body {
+    font-size: 14px;
+  }
 
-.dialogue2 {
-  position: absolute;
-  top: 49.3%;
-  left: 12%;
-}
-}
+  .dialogue1 {
+    position: absolute;
+    top: 31.6%;
+    left: 17.3%;
+  }
 
-@media (max-width: 300px) {
-  p {
-  font-size: 14px;
-}
-.dialogue1 {
-  position: absolute;
-  top: 31.25%;
-  left: 14%;
-}
+  .dialogue2 {
+    position: absolute;
+    top: 49.3%;
+    left: 15%;
+  }
 
-.dialogue2 {
-  position: absolute;
-  top: 49%;
-  left: 9%;
-}
+  .saju {
+    width: 300px;
+  }
+
+  .saju-square {
+    min-height: 50px;
+    width: 50px;
+  }
 }

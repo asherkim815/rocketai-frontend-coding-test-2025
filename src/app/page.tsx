@@ -6,17 +6,37 @@ export default function Home() {
   const hour = time.getHours();
   const minutes = time.getMinutes();
 
-  function TextSquare({ text1, text2 = null }) {
-    return (
-      <>
-        <p>{text1}</p>
-        <p>{text2}</p>
-      </>
-    );
-  }
+  function SajuRow({ row, data }) {
+    const dataResult = data.map((arr, i) => {
+      if (arr[0] === 'text') {
+        const textResult = arr[1].map((element: string, j: number) => {
+          const textArrLength = arr[1].length;
+          if (textArrLength > 2 && j < textArrLength - 1 && j % 2 === 1)
+            return (
+              <p key={j} className="even-line">
+                {element}
+              </p>
+            );
+          return <p key={j}>{element}</p>;
+        });
+        return (
+          <div key={i} className={`saju-square row${row} col${i}`}>
+            {textResult}
+          </div>
+        );
+      }
 
-  function ImageSquare({ src, alt }) {
-    return <img src={src} alt="{alt}" />;
+      if (arr[0] === 'image') {
+        return (
+          <div key={i} className={`saju-square row${row} col${i}`}>
+            <img src={arr[1][0]} alt={arr[1][1]} />
+          </div>
+        );
+      }
+      return <div key={i} className={`saju-square row${row} col${i}`}></div>;
+    });
+
+    return <div className="saju-row">{dataResult}</div>;
   }
 
   return (
@@ -33,82 +53,113 @@ export default function Home() {
       </div>
 
       <div className="saju">
-        <h2>김로켓님의 사주</h2>
+        <div className="deco deco-top"></div>
+        <div className="deco deco-right"></div>
+        <div className="deco deco-bottom"></div>
+        <div className="deco deco-left"></div>
 
-        <h2 className="time">
+        <h2 className="saju-title">김로켓님의 사주</h2>
+
+        <p className="saju-time">
           {year}년 {month}월 {date}일 {hour}:
           {minutes < 10 ? '0' + minutes : minutes}
-        </h2>
+        </p>
 
-        {/* row 1 */}
+        {/* 사주팔자 표에 글자를 넣고 싶다면 ['text', ['가나', '다라, '마바']] 식으로 기입{배열이 비었다면 빈 칸 반환} */}
+        {/* 이미지를 넣고 싶다면 ['image', ['/dummy-image.jpg', 'dummy image']] 식으로 기입(배열엔 이미지 src, alt 순으로 기입) */}
+        {/* 첫 SajuRow 컴포넌트(첫 번째 사주팔자 줄)는 번호 0으로 시작 */}
         <div className="saju-table">
-          <div className="saju-row">
-            <TextSquare text1="" />
-            <TextSquare text1="가" />
-            <TextSquare text1="나" />
-            <TextSquare text1="다" />
-            <TextSquare text1="라" />
-          </div>
-          row 2
-          <div className="saju-row">
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="나" text2="가나" />
-            <TextSquare text1="다" text2="가나" />
-            <TextSquare text1="라" text2="가나" />
-            <TextSquare text1="마" text2="가나" />
-          </div>
-          {/* row 3 */}
-          <div className="saju-row">
-            <TextSquare text1="가" text2="가나" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-          </div>
-          {/* row 4 */}
-          <div className="saju-row">
-            <TextSquare text1="가" text2="가나" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-            <ImageSquare src="dummy-image.jpg" alt="dummy image" />
-          </div>
-          {/* row 5 */}
-          <div className="saju-row">
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-          </div>
-          {/* row 6 */}
-          <div className="saju-row">
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-          </div>
-          {/* row 7 */}
-          <div className="saju-row">
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-          </div>
-          {/* row 8 */}
-          <div className="saju-row">
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-            <TextSquare text1="가" text2="가나" />
-          </div>
+          <SajuRow
+            row={0}
+            data={[
+              ['text', []],
+              ['text', ['가나']],
+              ['text', ['가나']],
+              ['text', ['가나']],
+              ['text', ['가나']],
+            ]}
+          />
+
+          <SajuRow
+            row={1}
+            data={[
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+            ]}
+          />
+
+          <SajuRow
+            row={2}
+            data={[
+              ['text', ['가나', '(다라)']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+            ]}
+          />
+
+          <SajuRow
+            row={3}
+            data={[
+              ['text', ['가나', '(다라)']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+              ['image', ['/dummy-image.jpg', 'dummy image']],
+            ]}
+          />
+
+          <SajuRow
+            row={4}
+            data={[
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+            ]}
+          />
+
+          <SajuRow
+            row={5}
+            data={[
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+            ]}
+          />
+
+          <SajuRow
+            row={6}
+            data={[
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+            ]}
+          />
+
+          <SajuRow
+            row={7}
+            data={[
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)']],
+              ['text', ['가나', '(다라)', '마바', '(사아)', '자차', '(카타)']],
+            ]}
+          />
         </div>
       </div>
 
-      <img src="chapter1.png" alt="chapter 1 image" />
+      <img src="/chapter1.png" alt="chapter 1 image" />
     </main>
   );
 }
