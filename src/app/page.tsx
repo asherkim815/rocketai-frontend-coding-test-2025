@@ -9,6 +9,7 @@ export default function Home() {
   // Type 설정이 어려워 number, any, any[] 타입만 썼습니다.
   // 한 컴포넌트에 너무 많은 데이터를 넣기도 했고, 제 TypeScript 이해도가 부족하기도 해서 그렇습니다.
   // 다음에는 더 많은 컴포넌트를 활용해 type을 세분화해보려 합니다.
+  // Vercel에 배포하기 위해 next.config.ts 파일에 "ignoreBuildErrors: true"를 적었습니다.
   function SajuRow({ row, data }: { row: number; data: any[] }) {
     const dataResult = data.map((arr: any, i: number) => {
       if (arr[0] === 'text') {
