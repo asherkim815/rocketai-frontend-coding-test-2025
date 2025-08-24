@@ -6,10 +6,13 @@ export default function Home() {
   const hour = time.getHours();
   const minutes = time.getMinutes();
 
-  function SajuRow({ row, data }) {
-    const dataResult = data.map((arr, i) => {
+  // Type 설정이 어려워 number, any, any[] 타입만 썼습니다.
+  // 한 컴포넌트에 너무 많은 데이터를 넣기도 했고, 제 TypeScript 이해도가 부족하기도 해서 그렇습니다.
+  // 다음에는 더 많은 컴포넌트를 활용해 type을 세분화해보려 합니다.
+  function SajuRow({ row, data }: { row: number; data: any[] }) {
+    const dataResult = data.map((arr: any, i: number) => {
       if (arr[0] === 'text') {
-        const textResult = arr[1].map((element: string, j: number) => {
+        const textResult = arr[1].map((element: any, j: number) => {
           const textArrLength = arr[1].length;
           if (textArrLength > 2 && j < textArrLength - 1 && j % 2 === 1)
             return (
@@ -65,8 +68,8 @@ export default function Home() {
           {minutes < 10 ? '0' + minutes : minutes}
         </p>
 
-        {/* 사주팔자 표에 글자를 넣고 싶다면 ['text', ['가나', '다라, '마바']] 식으로 기입{배열이 비었다면 빈 칸 반환} */}
-        {/* 이미지를 넣고 싶다면 ['image', ['/dummy-image.jpg', 'dummy image']] 식으로 기입(배열엔 이미지 src, alt 순으로 기입) */}
+        {/* 사주팔자 표에 글자를 넣고 싶다면 ['text', ['가나', '다라, '마바']] 식으로 기입{배열이 비었다면 빈 칸 반환함} */}
+        {/* 이미지를 넣고 싶다면 ['image', ['/dummy-image.jpg', 'dummy image']] 식으로 기입(배열엔 이미지의 src, alt 순으로 기입) */}
         {/* 첫 SajuRow 컴포넌트(첫 번째 사주팔자 줄)는 번호 0으로 시작 */}
         <div className="saju-table">
           <SajuRow
