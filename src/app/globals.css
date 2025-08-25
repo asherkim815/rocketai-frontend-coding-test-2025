@@ -164,17 +164,25 @@ main {
   .dialogue1 {
     position: absolute;
     top: 31.6%;
-    left: 18%;
+    left: 18.5%;
   }
 
   .dialogue2 {
     position: absolute;
     top: 49.4%;
-    left: 15.5%;
+    left: 16%;
   }
 
   .saju {
     width: 380px;
+  }
+
+  .saju-title {
+    font-size: 21px;
+  }
+
+  .saju-time {
+    font-size: 27px;
   }
 
   .saju-square {
@@ -185,23 +193,31 @@ main {
 
 @media (max-width: 400px) {
   body {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .dialogue1 {
     position: absolute;
-    top: 31.7%;
+    top: 31.6%;
     left: 17.7%;
   }
 
   .dialogue2 {
     position: absolute;
-    top: 49.4%;
-    left: 16%;
+    top: 49.3%;
+    left: 15%;
   }
 
   .saju {
-    width: 335px;
+    width: 340px;
+  }
+
+   .saju-title {
+    font-size: 18px;
+  }
+
+  .saju-time {
+    font-size: 24px;
   }
 
   .saju-square {
@@ -218,7 +234,7 @@ main {
   .dialogue1 {
     position: absolute;
     top: 31.6%;
-    left: 17.3%;
+    left: 17.5%;
   }
 
   .dialogue2 {
@@ -229,6 +245,14 @@ main {
 
   .saju {
     width: 300px;
+  }
+
+   .saju-title {
+    font-size: 18px;
+  }
+
+  .saju-time {
+    font-size: 24px;
   }
 
   .saju-square {
