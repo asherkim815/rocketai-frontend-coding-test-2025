@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Home() {
   const time = new Date();
   const year = time.getFullYear();
@@ -6,14 +8,11 @@ export default function Home() {
   const hour = time.getHours();
   const minutes = time.getMinutes();
 
-  // Type 설정이 어려워 number, any, any[] 타입만 썼습니다.
-  // 한 컴포넌트에 너무 많은 데이터를 넣기도 했고, 제 TypeScript 이해도가 부족하기도 해서 그렇습니다.
-  // 다음에는 더 많은 컴포넌트를 활용해 type을 세분화해보려 합니다.
-  // Vercel에 배포하기 위해 next.config.ts 파일에 "ignoreBuildErrors: true"를 적었습니다.
-  function SajuRow({ row, data }: { row: number; data: any[] }) {
-    const dataResult = data.map((arr: any, i: number) => {
+  // 사용 방법은 70줄 즈음 코멘트로 남겼습니다.
+  function SajuRow({ row, data }) {
+    const dataResult = data.map((arr, i) => {
       if (arr[0] === 'text') {
-        const textResult = arr[1].map((element: any, j: number) => {
+        const textResult = arr[1].map((element, j) => {
           const textArrLength = arr[1].length;
           if (textArrLength > 2 && j < textArrLength - 1 && j % 2 === 1)
             return (

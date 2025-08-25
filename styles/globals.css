@@ -14,6 +14,8 @@ body {
   font-size: 18px;
   font-family: 'Noto Serif KR', serif;
   background-color: rgba(245, 245, 245, 1);
+  display: flex;
+  justify-content: center;
 }
 
 /* 유일하게 테일윈드 사용 */
@@ -248,11 +250,46 @@ main {
   }
 
    .saju-title {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .saju-time {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .saju-square {
+    min-height: 50px;
+    width: 50px;
+  }
+}
+
+@media (max-width: 315px) {
+  body {
+    font-size: 12px;
+  }
+
+  .dialogue1 {
+    position: absolute;
+    top: 31.6%;
+    left: 19%;
+  }
+
+  .dialogue2 {
+    position: absolute;
+    top: 49.4%;
+    left: 16.3%;
+  }
+
+  .saju {
+    width: 280px;
+  }
+
+   .saju-title {
+    font-size: 14px;
+  }
+
+  .saju-time {
+    font-size: 20px;
   }
 
   .saju-square {
